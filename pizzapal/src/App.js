@@ -1,12 +1,12 @@
 import 'semantic-ui-css/semantic.min.css';
 import Layout from './components/Layout/Layout';
-import PizzaPal from './containers/PizzaPal/PizzaPal';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <Layout>
-      <PizzaPal />
-    </Layout>
+    <BrowserRouter>
+        <Layout />
+    </BrowserRouter>
   );
 }
 

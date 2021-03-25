@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import { Button, Modal } from 'semantic-ui-react';
 import OrderSummary from '../OrderSummary/OrderSummary';
 
@@ -16,24 +16,23 @@ const OrderModal = (props) => {
             <Modal.Header>Confirm your choices:</Modal.Header>
             <Modal.Content>
 
-            <OrderSummary 
-              menu = {props.menu}
-              toppings = {props.toppings}
-              price = {props.price}
-            />
+              <OrderSummary 
+                  menu = {props.menu}
+                  toppings = {props.toppings}
+                  price = {props.price}
+              />
 
             </Modal.Content>
             <Modal.Actions>
               <Button color='red' onClick={() => setOpen(false)}>
                   Go Back
               </Button>
-              <Button color='green' onClick={ () => { props.checkout(); setOpen(false); } }>
+              <Button color='green' disabled={props.disabled} onClick={ () => { props.checkout(); setOpen(false); } }>
                   Check out
               </Button>
             </Modal.Actions>
-      </Modal>
+        </Modal>
     )
-
 };
 
 export default OrderModal;
