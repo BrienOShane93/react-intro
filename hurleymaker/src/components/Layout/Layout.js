@@ -4,17 +4,15 @@ import './Layout.css';
 
 import {Route} from 'react-router-dom';
 import Nav from '../Nav/Nav';
-import PizzaPal from '../../containers/PizzaPal/PizzaPal';
+import HurleyMaker from '../../containers/HurleyMaker/HurleyMaker';
 import YourOrders from '../../containers/YourOrders/YourOrders';
-import PlaceOrder from '../../containers/PlaceOrder/PlaceOrder';
 
 const Layout = (props) => {
   return (
     <Container>
         <Nav />
-        <Route path="/" exact component={PizzaPal} />
-        <Route path="/orders" component={YourOrders} />
-        <Route path="/place-order" component={PlaceOrder} />
+        <Route path="/" exact component={HurleyMaker} />
+    	<Route path="/orders" component={YourOrders} />
     </Container>
   )
 };

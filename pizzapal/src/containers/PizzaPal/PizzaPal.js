@@ -119,48 +119,56 @@ const PizzaPal = (props) => {
 
   const checkoutHandler = () => {
 
-      // get order from orderState
-      let order = orderState;
+      // // get order from orderState
+      // let order = orderState;
 
-      // add unique id
-      order.id = uuidv4();
+      // // add unique id
+      // order.id = uuidv4();
 
-      // create formatted date
-      let orderDate = new Date();
+      // // create formatted date
+      // let orderDate = new Date();
 
-      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      // const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      // const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-      let dayNum = orderDate.getDay();
-      let day = days[dayNum];
+      // let dayNum = orderDate.getDay();
+      // let day = days[dayNum];
 
-      let monthNum = orderDate.getMonth();
-      let month = months[monthNum];
+      // let monthNum = orderDate.getMonth();
+      // let month = months[monthNum];
 
-      let date = orderDate.getDate();
-      let year = orderDate.getFullYear();
+      // let date = orderDate.getDate();
+      // let year = orderDate.getFullYear();
 
-      // saves date in the format "Fri 19 Mar 2021"
-      let formattedDate = day + " " + date + " " + month + " " + year;
+      // // saves date in the format "Fri 19 Mar 2021"
+      // let formattedDate = day + " " + date + " " + month + " " + year;
 
-      // add formattedDate to order
-      order.date = formattedDate;
+      // // add formattedDate to order
+      // order.date = formattedDate;
 
-      axios.post('/orders.json', order)
-      .then(response => {
-          alert('Order saved!');
-          // set order state and orderToppings back to starting values
-          setOrderState({
-            totalPrice: 5,
-            chosenToppings: []
-          });
-          orderToppings=[];
-      })
-      .catch(error => {
-        setMenuState({toppings: menuState.toppings, error: true});
-        alert('Something went wrong :(');
-        console.log(error);
-        });
+      // axios.post('/orders.json', order)
+      // .then(response => {
+      //     alert('Order saved!');
+      //     // set order state and orderToppings back to starting values
+      //     setOrderState({
+      //       totalPrice: 5,
+      //       chosenToppings: []
+      //     });
+      //     orderToppings=[];
+      // })
+      // .catch(error => {
+      //   setMenuState({toppings: menuState.toppings, error: true});
+      //   alert('Something went wrong :(');
+      //   console.log(error);
+      //   });
+
+      props.history.push({
+      pathname: 'place-order', 
+      state: {
+        order: orderState, 
+        menu: menuState.toppings
+      }
+    });
   }
 
   let pizzapalMenu = menuState.error ? <Message><p>Pizza Pal menu can't be loaded!</p></Message> : <Message><p>Menu loading...</p></Message>;
