@@ -4,56 +4,58 @@ import OrdersTable from '../../components/OrdersTable/OrdersTable';
 import { Message } from 'semantic-ui-react';
 
 const YourOrders = (props) => {
-	const [pastOrdersState, setPastOrdersState] = useState({
-		orders: [],
-		ordersLoaded: false,
-		error: false
-	});
 
-    useEffect(() => {
-        axios.get('/orders.json')
-        .then(response => {
-            // get orders from firebase (returns an object)
-            let ordersObject = response.data;
+  const [pastOrdersState, setPastOrdersState] = useState({
+    orders: [],
+    ordersLoaded: false,
+    error: false
+  });
 
-            // create an empty array
-            let ordersArray = []; 
+  useEffect(() => {
+    axios.get('/orders.json')
+    .then(response => {
+      // get orders from firebase (returns an object)
+      let ordersObject = response.data;
 
-            // store each order object in the ordersArray
-            for (let i in ordersObject){
-                ordersArray.push(ordersObject[i]);
-            }
+      // create an empty array
+      let ordersArray = []; 
 
-            // update the state
-            setPastOrdersState({orders: ordersArray, ordersLoaded: true, error: false});
-        })
-        .catch(error => {
-            setPastOrdersState({orders: pastOrdersState.orders, ordersLoaded: pastOrdersState.ordersLoaded, error: true});
-            console.log(pastOrdersState.error, error);
-        });
-    }, [])
+      // store each order object in the ordersArray
+      for (let i in ordersObject){
+        ordersArray.push(ordersObject[i]);
+      }
 
-    console.log(pastOrdersState.orders);
+      // update the state
+      setPastOrdersState({orders: ordersArray, ordersLoaded: true, error: false});
+      
+    })
+    .catch(error => {
+      setPastOrdersState({orders: pastOrdersState.orders, ordersLoaded: pastOrdersState.ordersLoaded, error: true});
+      console.log(pastOrdersState.error, error);
+    });
+  }, [])
 
-    let orders = pastOrdersState.error ? <Message><p>Orders can't be loaded!</p></Message> : <Message><p>Orders loading...</p></Message>;
 
-    if (pastOrdersState.ordersLoaded){
+  let orders = pastOrdersState.error ? <Message><p>Orders can't be loaded!</p></Message> : <Message><p>Orders loading...</p></Message>;
 
-        if(pastOrdersState.orders.length > 0){
-            orders = (
-                <OrdersTable orders={pastOrdersState.orders} />
-            );
-        }
-        else{
-            orders = <Message><p>You haven't placed any orders yet :(</p></Message>
-        }
+  if (pastOrdersState.ordersLoaded){
+
+    if(pastOrdersState.orders.length > 0){
+      orders = (
+        <OrdersTable orders={pastOrdersState.orders} />
+      );
     }
+    else{
+      orders = <Message><p>You haven't placed any orders yet :(</p></Message>
+    }
+  }
 
-	return (
-	    <div>
-	        {orders}
-	    </div>
-	)
+
+ return (
+    <div>
+      {orders}
+    </div>
+  )
 };
 
 export default YourOrders;

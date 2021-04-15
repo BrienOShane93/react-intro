@@ -10,11 +10,11 @@ const Nav = (props) => {
         </Menu.Item>
 
         <Menu.Item as={NavLink} to="/" exact>
-            Pizza Pal
+          Pizza Pal
         </Menu.Item>
 
         <Menu.Item as={NavLink} to="/orders">
-            Your Orders
+          Your Orders
         </Menu.Item>
     </Menu>
   )
