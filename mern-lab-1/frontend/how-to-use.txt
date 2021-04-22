@@ -1,0 +1,7 @@
+How to use this solution:
+
+- Navigate to this folder in a command prompt/terminal
+- Run "npm install"
+- Run "npm start"
+
+You should also replace the URL in axios-orders.js with the URL of your own Firebase Database.
