@@ -9,7 +9,7 @@ const OrdersTable = (props) => {
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell width={4}>Order Date</Table.HeaderCell>
-          <Table.HeaderCell width={8}>Pizza Description</Table.HeaderCell>
+          <Table.HeaderCell width={8}>Hurley Description</Table.HeaderCell>
           <Table.HeaderCell width={4}>Price</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
