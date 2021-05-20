@@ -72,9 +72,9 @@ const usersController = {
           let token;
           try {
             token = jwt.sign(
-              { userId: createdUser.id, email: createdUser.email },
-              "very_secret_private_key",
-              { expiresIn: "1h" }
+                { userId: existingUser.id, email: existingUser.email },
+                process.env.JWT_KEY,
+                { expiresIn: "1h" }
             );
           } catch (err) {
             const error = new HttpError(
@@ -130,9 +130,9 @@ const usersController = {
           let token;
           try {
             token = jwt.sign(
-              { userId: existingUser.id, email: existingUser.email },
-              "very_secret_private_key",
-              { expiresIn: "1h" }
+                { userId: existingUser.id, email: existingUser.email },
+                process.env.JWT_KEY,
+                { expiresIn: "1h" }
             );
           } catch (err) {
             const error = new HttpError(

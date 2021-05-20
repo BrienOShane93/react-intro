@@ -1,3 +1,4 @@
+const decodedToken = jwt.verify(token, process.env.JWT_KEY);
 const jwt = require("jsonwebtoken");
 
 const HttpError = require("../utils/http-error");

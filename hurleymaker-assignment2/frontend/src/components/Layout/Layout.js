@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, Suspense } from "react";
+import Loader from '../Feedback/Loader/Loader';
 import { Container } from "semantic-ui-react";
 import { Route, useHistory, Switch } from "react-router-dom";
 
@@ -6,13 +7,14 @@ import "./Layout.css";
 
 import Nav from "../Nav/Nav";
 import HurleyMaker from "../../containers/HurleyMaker/HurleyMaker";
-import YourOrders from "../../containers/YourOrders/YourOrders";
-import PlaceOrder from "../../containers/PlaceOrder/PlaceOrder";
-import OrderSuccess from "../../containers/PlaceOrder/OrderSuccess/OrderSuccess";
-import Authenticate from "../../containers/Authenticate/Authenticate";
-import YourAccount from "../../containers/YourAccount/YourAccount";
-import AccountUpdate from "../../containers/YourAccount/AccountUpdate/AccountUpdate";
 import AuthContext from "../../context/auth-context";
+
+const YourOrders = React.lazy(() => import("../../containers/YourOrders/YourOrders"));
+const PlaceOrder = React.lazy(() => import("../../containers/PlaceOrder/PlaceOrder"));
+const OrderSuccess = React.lazy(() => import("../../containers/PlaceOrder/OrderSuccess/OrderSuccess"));
+const Authenticate = React.lazy(() => import("../../containers/Authenticate/Authenticate"));
+const YourAccount = React.lazy(() => import("../../containers/YourAccount/YourAccount"));
+const AccountUpdate = React.lazy(() => import("../../containers/YourAccount/AccountUpdate/AccountUpdate"));
 
 let logoutTimer;
 
@@ -96,7 +98,9 @@ const Layout = (props) => {
     >
       <Container>
         <Nav />
-        {routes}
+        <Suspense fallback={<div><Loader active='true' /></div>}>
+            {routes}
+        </Suspense>
       </Container>
     </AuthContext.Provider>
   );

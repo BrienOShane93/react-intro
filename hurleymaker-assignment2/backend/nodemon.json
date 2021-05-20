@@ -1,0 +1,8 @@
+{
+    "env": {
+        "DB_USER": "SOBrien",
+        "DB_PASSWORD": "WebAppDev2",
+        "DB_NAME": "HurleyMaker",
+        "JWT_KEY": "very_secret_private_key"
+    }
+}
