@@ -316,7 +316,7 @@ const PlaceOrder = (props) => {
               </Header>
               <OrderSummary
                 menu={props.location.state.menu}
-                toppings={props.location.state.order.chosenStyles}
+                styles={props.location.state.order.chosenStyles}
                 price={props.location.state.order.totalPrice}
               />
               <Button color="red" onClick={cancelHandler}>
